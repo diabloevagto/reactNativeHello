@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -20,6 +21,11 @@ const instructions = Platform.select({
 });
 
 export default class App extends Component<{}> {
+  constructor(props) {
+    super(props);
+    this.state = { text: '' };
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -32,6 +38,12 @@ export default class App extends Component<{}> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
+        <TextInput
+          style={{ height: 40 }}
+          placeholder="Type here to translate!"
+          onChangeText={(text) => this.setState({ text })}
+        />
+        <Text>{this.state.text}</Text>
       </View>
     );
   }
