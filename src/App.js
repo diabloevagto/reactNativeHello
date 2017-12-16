@@ -11,6 +11,8 @@ import {
   Text,
   View,
   TextInput,
+  Button,
+  Alert,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -44,6 +46,12 @@ export default class App extends Component<{}> {
           onChangeText={(text) => this.setState({ text })}
         />
         <Text>{this.state.text}</Text>
+        <Button
+          onPress={() => {
+            Alert.alert('You tapped the button!');
+          }}
+          title="Press Me"
+        />
       </View>
     );
   }
