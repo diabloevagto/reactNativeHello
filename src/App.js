@@ -13,6 +13,8 @@ import {
   TextInput,
   Button,
   Alert,
+  ScrollView,
+  Image,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -52,6 +54,13 @@ export default class App extends Component<{}> {
           }}
           title="Press Me"
         />
+        <ScrollView>
+          <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+          <Image
+            source={{ uri: 'https://static.highsnobiety.com/wp-content/uploads/2016/09/07104020/google-maps-pokemon-go-0.jpg' }}
+            style={{ width: 960, height: 576 }}
+          />
+        </ScrollView>
       </View>
     );
   }
