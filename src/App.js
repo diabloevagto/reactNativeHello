@@ -56,7 +56,7 @@ class ListViewPractice extends Component<{}> {
       <View style={styles.container}>
         <FlatList
           data={this.props.data}
-          renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+          renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
         />
       </View>
     );
@@ -68,7 +68,16 @@ export default class App extends Component<{}> {
     super(props);
     this.state = {
       text: '',
-      listData: ['a', 'b', 'c', 'd', 'e'],
+      listData: [
+        { key: 'Devin' },
+        { key: 'Jackson' },
+        { key: 'James' },
+        { key: 'Joel' },
+        { key: 'John' },
+        { key: 'Jillian' },
+        { key: 'Jimmy' },
+        { key: 'Julie' },
+      ],
     };
   }
 
