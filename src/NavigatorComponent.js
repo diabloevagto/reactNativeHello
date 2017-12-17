@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator, DrawerNavigator } from 'react-navigation';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -46,8 +46,12 @@ const NavigatorSetting = {
         navigationOptions: {
             headerTitle: 'Home',
             tabBarLabel: 'Home',
+            drawerLabel: 'Home',
             tabBarIcon: ({ tintColor, focused }) => (
-                <Text>Home</Text>
+                <Text>HomeIcon</Text>
+            ),
+            drawerIcon: ({ tintColor, focused }) => (
+                <Text>HomeIcon</Text>
             ),
         },
     },
@@ -56,15 +60,20 @@ const NavigatorSetting = {
         navigationOptions: {
             headerTitle: 'Details',
             tabBarLabel: 'Details',
+            drawerLabel: 'Details',
             tabBarIcon: ({ tintColor, focused }) => (
-                <Text>Details</Text>
+                <Text>DetailsIcon</Text>
+            ),
+            drawerIcon: ({ tintColor, focused }) => (
+                <Text>DetailsIcon</Text>
             ),
         },
     },
 };
 
 // const RootNavigator = StackNavigator(NavigatorSetting);
-const RootNavigator = TabNavigator(NavigatorSetting);
+// const RootNavigator = TabNavigator(NavigatorSetting);
+const RootNavigator = DrawerNavigator(NavigatorSetting);
 
 const styles = StyleSheet.create({
     container: {
