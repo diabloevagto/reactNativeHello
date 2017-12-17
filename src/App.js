@@ -78,7 +78,23 @@ export default class App extends Component<{}> {
         { key: 'Jimmy' },
         { key: 'Julie' },
       ],
+      yesApi: {}
     };
+  }
+
+  componentDidMount() {
+    this.getYesOrNoApi()
+  }
+
+  getYesOrNoApi() {
+    return fetch('https://yesno.wtf/api')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({ yesApi: responseJson })
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -105,6 +121,7 @@ export default class App extends Component<{}> {
           }}
           title="Press Me"
         />
+        <Text>yes or no: {this.state.yesApi.answer || ''}</Text>
         {
           false &&
           <ScrollViewPractice />
