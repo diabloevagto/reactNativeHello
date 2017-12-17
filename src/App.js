@@ -24,6 +24,28 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+class ScrollViewPractice extends Component<{}> {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView
+          maximumZoomScale={2}
+          minimumZoomScale={0.1}
+        >
+          <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
+          <Image
+            source={{ uri: 'https://static.highsnobiety.com/wp-content/uploads/2016/09/07104020/google-maps-pokemon-go-0.jpg' }}
+            style={{ width: 960, height: 576 }}
+          />
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
@@ -54,17 +76,9 @@ export default class App extends Component<{}> {
           }}
           title="Press Me"
         />
-        {true &&
-          <ScrollView
-            maximumZoomScale={2}
-            minimumZoomScale={0.1}
-          >
-            <Text style={{ fontSize: 96 }}>Scroll me plz</Text>
-            <Image
-              source={{ uri: 'https://static.highsnobiety.com/wp-content/uploads/2016/09/07104020/google-maps-pokemon-go-0.jpg' }}
-              style={{ width: 960, height: 576 }}
-            />
-          </ScrollView>
+        {
+          true &&
+          <ScrollViewPractice />
         }
       </View>
     );
