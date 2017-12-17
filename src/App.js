@@ -15,6 +15,7 @@ import {
   Alert,
   ScrollView,
   Image,
+  FlatList,
 } from 'react-native';
 
 const instructions = Platform.select({
@@ -46,10 +47,29 @@ class ScrollViewPractice extends Component<{}> {
   }
 }
 
+class ListViewPractice extends Component<{}> {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={this.props.data}
+          renderItem={({ item }) => <Text style={styles.item}>{item}</Text>}
+        />
+      </View>
+    );
+  }
+}
+
 export default class App extends Component<{}> {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = {
+      text: '',
+      listData: ['a', 'b', 'c', 'd', 'e'],
+    };
   }
 
   render() {
@@ -77,8 +97,12 @@ export default class App extends Component<{}> {
           title="Press Me"
         />
         {
-          true &&
+          false &&
           <ScrollViewPractice />
+        }
+        {
+          true &&
+          <ListViewPractice data={this.state.listData} />
         }
       </View>
     );
@@ -102,4 +126,7 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  item: {
+    color: 'red',
+  }
 });
