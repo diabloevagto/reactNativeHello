@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native run-ios",
+    "start-device": "react-native run-ios --device",
+    "release": "react-native run-ios --configuration Release",
+    "release-device": "react-native run-ios --device --configuration Release",
     "test": "jest"
   },
   "dependencies": {
