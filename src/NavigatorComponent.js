@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -40,20 +40,31 @@ class DetailsScreen extends Component {
     }
 }
 
-const RootNavigator = StackNavigator({
+const NavigatorSetting = {
     Home: {
         screen: HomeScreen,
         navigationOptions: {
             headerTitle: 'Home',
+            tabBarLabel: 'Home',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Text>Home</Text>
+            ),
         },
     },
     Details: {
         screen: DetailsScreen,
         navigationOptions: {
             headerTitle: 'Details',
+            tabBarLabel: 'Details',
+            tabBarIcon: ({ tintColor, focused }) => (
+                <Text>Details</Text>
+            ),
         },
     },
-});
+};
+
+// const RootNavigator = StackNavigator(NavigatorSetting);
+const RootNavigator = TabNavigator(NavigatorSetting);
 
 const styles = StyleSheet.create({
     container: {
@@ -62,6 +73,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 });
-
 
 export default RootNavigator;
