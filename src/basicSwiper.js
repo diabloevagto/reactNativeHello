@@ -13,28 +13,31 @@ var styles = {
     slide1: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#9DD6EB'
     },
     slide2: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#97CAE5'
     },
     slide3: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#92BBD9'
     },
     text: {
         color: '#fff',
         fontSize: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf: 'center',
+    },
+    textInput: {
+        height: 40,
+        textAlign: 'center',
     },
     userDate: {
         color: 'gray',
+        alignSelf: 'center',
         fontSize: 25,
     },
 }
@@ -68,12 +71,12 @@ export default class basicSwiperPractice extends Component {
                 <View style={styles.slide1}>
                     <Text style={styles.text}>輸入你的資料</Text>
                     <TextInput
-                        style={{ height: 40 }}
+                        style={styles.textInput}
                         placeholder='姓名'
                         onChangeText={(text) => this.setState({ userName: new User(text, this.state.userName.phone) })}
                     />
                     <TextInput
-                        style={{ height: 40 }}
+                        style={styles.textInput}
                         placeholder='電話'
                         onChangeText={(text) => this.setState({ userName: new User(this.state.userName.name, text) })}
                         keyboardType='phone-pad'
@@ -82,12 +85,12 @@ export default class basicSwiperPractice extends Component {
                 <View style={styles.slide2}>
                     <Text style={styles.text}>輸入緊急聯絡人資料</Text>
                     <TextInput
-                        style={{ height: 40 }}
+                        style={styles.textInput}
                         placeholder='姓名'
                         onChangeText={(text) => this.setState({ emergencyUser: new User(text, this.state.emergencyUser.phone) })}
                     />
                     <TextInput
-                        style={{ height: 40 }}
+                        style={styles.textInput}
                         placeholder='電話'
                         onChangeText={(text) => this.setState({ emergencyUser: new User(this.state.emergencyUser.name, text) })}
                         keyboardType='phone-pad'
@@ -105,7 +108,7 @@ export default class basicSwiperPractice extends Component {
 
                         }}
                         title="finish"
-                        disabled={this.state.userName.isComplete() || this.state.emergencyUser.isComplete()}
+                        disabled={!this.state.userName.isComplete() || !this.state.emergencyUser.isComplete()}
                     />
                 </View>
             </Swiper >
