@@ -61,6 +61,24 @@ export default class basicSwiperPractice extends Component {
         }
     }
 
+    genTextInput(userType) {
+        return (
+            <View>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder='姓名'
+                    onChangeText={(text) => this.setState({ [userType]: new User(text, this.state[userType].phone) })}
+                />
+                <TextInput
+                    style={styles.textInput}
+                    placeholder='電話'
+                    onChangeText={(text) => this.setState({ [userType]: new User(this.state[userType].name, text) })}
+                    keyboardType='phone-pad'
+                />
+            </View>
+        )
+    }
+
     render() {
         return (
             <Swiper
@@ -70,31 +88,11 @@ export default class basicSwiperPractice extends Component {
             >
                 <View style={styles.slide1}>
                     <Text style={styles.text}>輸入你的資料</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder='姓名'
-                        onChangeText={(text) => this.setState({ userName: new User(text, this.state.userName.phone) })}
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder='電話'
-                        onChangeText={(text) => this.setState({ userName: new User(this.state.userName.name, text) })}
-                        keyboardType='phone-pad'
-                    />
+                    {this.genTextInput('userName')}
                 </View>
                 <View style={styles.slide2}>
                     <Text style={styles.text}>輸入緊急聯絡人資料</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder='姓名'
-                        onChangeText={(text) => this.setState({ emergencyUser: new User(text, this.state.emergencyUser.phone) })}
-                    />
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder='電話'
-                        onChangeText={(text) => this.setState({ emergencyUser: new User(this.state.emergencyUser.name, text) })}
-                        keyboardType='phone-pad'
-                    />
+                    {this.genTextInput('emergencyUser')}
                 </View>
                 <View style={styles.slide3}>
                     <Text style={styles.text}>你的資料</Text>
