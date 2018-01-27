@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
   Button,
+  AsyncStorage,
 } from 'react-native'
 import Swiper from 'react-native-swiper'
 
@@ -61,17 +62,27 @@ export default class basicSwiperPractice extends Component {
     }
   }
 
+  async componentWillMount() {
+    let restoreName = JSON.parse(await AsyncStorage.getItem('name'));
+    this.setState({
+      userName: new User(restoreName.userName.name, restoreName.userName.phone),
+      emergencyUser: new User(restoreName.emergencyUser.name, restoreName.emergencyUser.phone),
+    })
+  }
+
   genTextInput(userType) {
     return (
       <View>
         <TextInput
           style={styles.textInput}
           placeholder='姓名'
+          defaultValue={this.state[userType].name}
           onChangeText={(text) => this.setState({ [userType]: new User(text, this.state[userType].phone) })}
         />
         <TextInput
           style={styles.textInput}
           placeholder='電話'
+          defaultValue={this.state[userType].phone}
           onChangeText={(text) => this.setState({ [userType]: new User(this.state[userType].name, text) })}
           keyboardType='phone-pad'
         />
@@ -102,8 +113,12 @@ export default class basicSwiperPractice extends Component {
           <Text style={styles.userDate}>{this.state.emergencyUser.name}</Text>
           <Text style={styles.userDate}>{this.state.emergencyUser.phone}</Text>
           <Button
-            onPress={() => {
-
+            onPress={async () => {
+              const jsonDate = JSON.stringify({
+                userName: this.state.userName,
+                emergencyUser: this.state.emergencyUser,
+              })
+              await AsyncStorage.setItem('name', jsonDate)
             }}
             title="finish"
             disabled={!this.state.userName.isComplete() || !this.state.emergencyUser.isComplete()}
