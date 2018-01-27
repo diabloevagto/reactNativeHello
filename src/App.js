@@ -25,7 +25,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-class ScrollViewPractice extends Component<{}> {
+class ScrollViewPractice extends Component {
   constructor(props) {
     super(props);
   }
@@ -47,7 +47,7 @@ class ScrollViewPractice extends Component<{}> {
   }
 }
 
-class ListViewPractice extends Component<{}> {
+class ListViewPractice extends Component {
   constructor(props) {
     super(props);
   }
@@ -63,7 +63,7 @@ class ListViewPractice extends Component<{}> {
   }
 }
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
